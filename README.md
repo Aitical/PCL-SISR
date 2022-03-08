@@ -2,7 +2,7 @@
 Pytorch Implementation of PCL-SISR.
 
 ## Framework
-![Framework](https://anonymous.4open.science/r/ECL-SISR-8B94/pic/framework.png)
+![Framework](./pic/framework.png)
 
 
 ## Train
