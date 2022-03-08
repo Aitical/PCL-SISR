@@ -36,4 +36,4 @@ Some examples are shown.
 ![Results](https://anonymous.4open.science/r/ECL-SISR-8B94/pic/visual.png)
 
 ## Acknowledgements
-We thank the authors for sharing their codes of  [EDSR (PyTorch)](https://github.com/thstkdgus35/EDSR-PyTorch), [RCAN](https://github.com/yulunzhang/RCAN) and [HAN](https://github.com/wwlCape/HAN).
+We thank the authors for sharing their codes of  [EDSR (PyTorch)](https://github.com/thstkdgus35/EDSR-PyTorch), [RCAN](https://github.com/yulunzhang/RCAN), [HAN](https://github.com/wwlCape/HAN) and [NLSN](https://github.com/HarukiYqM/Non-Local-Sparse-Attention).
