@@ -1,5 +1,17 @@
 # PCL-SISR
-Pytorch Implementation of PCL-SISR.
+Our Pytorch Implementation of PCL-SISR.
+```
+@article{DBLP:journals/corr/abs-2111-13924,
+  author    = {Gang Wu and
+               Junjun Jiang and
+               Xianming Liu and
+               Jiayi Ma},
+  title     = {A Practical Contrastive Learning Framework for Single Image Super-Resolution},
+  journal   = {CoRR},
+  volume    = {abs/2111.13924},
+  year      = {2021}
+}
+```
 
 ## Framework
 ![Framework](./pic/framework.png)
@@ -37,3 +49,6 @@ Some examples are shown.
 
 ## Acknowledgements
 We thank the authors for sharing their codes of  [EDSR (PyTorch)](https://github.com/thstkdgus35/EDSR-PyTorch), [RCAN](https://github.com/yulunzhang/RCAN), [HAN](https://github.com/wwlCape/HAN) and [NLSN](https://github.com/HarukiYqM/Non-Local-Sparse-Attention).
+
+
+
