@@ -35,7 +35,7 @@ To reproduce our results, please take our code to their official implementations
 More methods and other low-level tasks will be tested in the future.
 
 ## Test
-![Results](https://github.com/Aitical/PCL-SISR/pic/table.png)
+![Results](pic/table.png)
 
 Test datasets can be found in [EDSR(PyTorch)](https://github.com/thstkdgus35/EDSR-PyTorch). PSNR and SSIM metric scripts can be found in [here](https://github.com/greatlog/DAN/tree/master/metrics).
 
@@ -45,18 +45,18 @@ Our pre-trained models are released, please download from [Google Drive](https:/
 
 Main results.
 
-![Results](https://github.com/Aitical/PCL-SISR/pic/table1.png)
+![Results](pic/table1.png)
 
 
 
 Some examples are shown.
 
-![PairComparison](https://github.com/Aitical/PCL-SISR/pic/figure2.png)
+![PairComparison](pic/figure2.png)
 
 
 Comparison with more approaches with detail textures.
 
-![MoreApproaches](https://github.com/Aitical/PCL-SISR/pic/figure3.png)
+![MoreApproaches](pic/figure3.png)
 
 
 ## Acknowledgements
