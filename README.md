@@ -14,7 +14,7 @@ Our Pytorch Implementation of PCL-SISR.
 ```
 
 ## Framework
-![Framework](./pic/figure.png)
+![Framework](pic/figure1.png)
 
 
 ## Train
@@ -35,7 +35,6 @@ To reproduce our results, please take our code to their official implementations
 More methods and other low-level tasks will be tested in the future.
 
 ## Test
-![Results](pic/table.png)
 
 Test datasets can be found in [EDSR(PyTorch)](https://github.com/thstkdgus35/EDSR-PyTorch). PSNR and SSIM metric scripts can be found in [here](https://github.com/greatlog/DAN/tree/master/metrics).
 
