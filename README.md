@@ -1,20 +1,37 @@
-# PCL-SISR
-Our Pytorch Implementation of PCL-SISR.
+<div align="center">
+
+# A Practical Contrastive Learning Framework for Single-Image Super-Resolution
+
+<img src="https://img.shields.io/badge/TNNLS-%2300629B.svg?&style=for-the-badge&logo=ieee&logoColor=white" href="https://ieeexplore.ieee.org/abstract/document/10176303"/>
+<img src="https://img.shields.io/badge/2111.13924-%23B31B1B.svg?&style=for-the-badge&logo=arxiv&logoColor=white" href="https://arxiv.org/abs/2111.13924"/>
+<a href="https://hits.sh/github.com/Aitical/PCL-SISR/"><img alt="Hits" src="https://hits.sh/github.com/Aitical/PCL-SISR.svg?style=for-the-badge"/></a>
+
+<font size=1>自媒体主动宣传:</font>
+<img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" />
+<img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white" /> 
+
+
+
+</div>
+
+## Cication
 ```
-@article{DBLP:journals/corr/abs-2111-13924,
-  author    = {Gang Wu and
-               Junjun Jiang and
-               Xianming Liu and
-               Jiayi Ma},
-  title     = {A Practical Contrastive Learning Framework for Single Image Super-Resolution},
-  journal   = {CoRR},
-  volume    = {abs/2111.13924},
-  year      = {2021}
-}
+@ARTICLE{10176303,
+  author={Wu, Gang and Jiang, Junjun and Liu, Xianming},
+  journal={IEEE Transactions on Neural Networks and Learning Systems}, 
+  title={A Practical Contrastive Learning Framework for Single-Image Super-Resolution}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-12},
+  doi={10.1109/TNNLS.2023.3290038}}
 ```
 
-## Framework
-![Framework](pic/figure1.png)
+## Overview
+Contrastive learning has achieved remarkable success on various high-level tasks, but there are fewer contrastive learning-based methods proposed for low-level tasks. It is challenging to adopt vanilla contrastive learning technologies proposed for high-level visual tasks to low-level image restoration problems straightly. Because the acquired high-level global visual representations are insufficient for low-level tasks requiring rich texture and context information. In this paper, we investigate the contrastive learning-based single image super-resolution from two perspectives: positive and negative sample construction and feature embedding. The existing methods take naive sample construction approaches (e.g., considering the low-quality input as a negative sample and the ground truth as a positive sample) and adopt a prior model (e.g., pre-trained VGG model) to obtain the feature embedding. To this end, we propose a practical contrastive learning framework for SISR, named PCL-SR. We involve the generation of many informative positive and hard negative samples in frequency space. Instead of utilizing an additional pre-trained network, we design a simple but effective embedding network inherited from the discriminator network which is more task-friendly. Compared with existing benchmark methods, we re-train them by our proposed PCL-SR framework and achieve superior performance. Extensive experiments have been conducted to show the effectiveness and technical contributions of our proposed PCL-SR thorough ablation studies.
+<div style="text-align: center">
+<img style="max-width:100%;overflow:hidden;" src="pic/framework_final.png" alt="">
+</div>
 
 
 ## Train
@@ -48,14 +65,24 @@ Main results.
 
 
 
-Some examples are shown.
+Some examples are presented.
 
-![PairComparison](pic/figure2.png)
+Urban100 Samples
+<div style="text-align: center">
+<img style="max-width:100%" src="pic/Urban100_Results.jpg" alt="">
+</div>
+
+Manga109 Samples
+
+<div style="text-align: center">
+<img style="max-width:100%;overflow:hidden;" src="pic/Manga109_results.jpg" alt="">
+</div>
 
 
-Comparison with more approaches with detail textures.
-
-![MoreApproaches](pic/figure3.png)
+Robust to ResSRSet
+<div style="text-align: center">
+<img style="max-width:100%;overflow:hidden;" src="pic/realsrset.jpg" alt="">
+</div>
 
 
 ## Acknowledgements
