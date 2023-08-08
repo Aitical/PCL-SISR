@@ -7,8 +7,8 @@
 <a href="https://hits.sh/github.com/Aitical/PCL-SISR/"><img alt="Hits" src="https://hits.sh/github.com/Aitical/PCL-SISR.svg?style=for-the-badge"/></a>
 
 <font size=1>自媒体主动宣传:</font>
-<img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" />
-<img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white" /> 
+<img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" href="https://zhuanlan.zhihu.com/p/445261986" />
+<img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white" href="https://blog.csdn.net/weixin_43904899/article/details/121843427" /> 
 
 
 
