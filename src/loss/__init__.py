@@ -25,6 +25,14 @@ class Loss(nn.modules.loss._Loss):
                 loss_function = nn.MSELoss()
             elif loss_type == 'L1':
                 loss_function = nn.L1Loss()
+            elif loss_type == 'WaveL1':
+                cl = import_module('loss.loss')
+                loss_function = cl.WaveL1Loss(args)
+            elif loss_type == 'MultiL1':
+                loss_function = nn.L1Loss()
+            elif loss_type == 'MultiWaveL1':
+                cl = import_module('loss.loss')
+                loss_function = cl.MultiWaveL1Loss(args)
             elif loss_type == 'CL':
                 cl = import_module('loss.cl')
                 loss_function = cl.ContrastiveLoss(
@@ -115,7 +123,7 @@ class Loss(nn.modules.loss._Loss):
         if args.precision == 'half': self.loss_module.half()
         if not args.cpu and args.n_GPUs > 1:
             self.loss_module = nn.DataParallel(
-                self.loss_module, range(args.n_GPUs)
+                self.loss_module,
             )
         if args.load != '': self.load(ckp.dir, cpu=args.cpu)
 

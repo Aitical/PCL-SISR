@@ -137,6 +137,7 @@ class Adversarial(nn.Module):
                 cl_loss = self.infoNCE(fake_features, real_sample, neg_sample)
 
             loss_g += self.args.cl_gan_cl_weight * cl_loss
+
         return loss_g
 
     def infoNCE(self, sr_features, hr, lr):
@@ -187,7 +188,7 @@ class Adversarial(nn.Module):
 
         for f_lr in lr_layers:
             neg_diff = torch.sum(
-                F.normalize(sr_layer, dim=1) * F.normalize(f_lr, dim=1), dim=1).mean(dim=[-1, -2]).unsqueeze(1)
+               F.normalize(sr_layer, dim=1) * F.normalize(f_lr, dim=1), dim=1).mean(dim=[-1, -2]).unsqueeze(1)
             neg_logits.append(neg_diff)
 
         if self.args.shuffle_neg:

@@ -1,7 +1,143 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from .lpips import LPIPS
 import random
+from torchvision import models
+
+class ContrastiveLoss(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        self.multi_neg = args.multi_neg
+        self.lpips = LPIPS(net='vgg', spatial=args.lpips_spatial, weight=args.layer_weight)
+
+    def forward(self, sr, hr, lr):
+        b, c, h, w = sr.shape
+        b_, c_, h_, w_ = lr.shape
+        if h_ != h or w_ != w:
+            lr = F.interpolate(lr, (h, w), mode='bicubic', align_corners=True).clamp(0, 1)
+
+        pos_lpips = self.lpips(sr, hr).mean()
+        neg_lpips = self.lpips(sr, lr).mean() + 3e-7
+        loss = pos_lpips / neg_lpips
+        return loss
+
+
+class RandContrastiveLoss(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        self.multi_neg = args.multi_neg
+        self.lpips = LPIPS(net='vgg', spatial=args.lpips_spatial, weight=args.layer_weight)
+
+    def forward(self, sr, hr_list, lr_list):
+        b, c, h, w = sr.shape
+        assert isinstance(lr_list, list)
+        b_, c_, h_, w_ = lr_list[0].shape
+        pos_lpips = 0
+        if not isinstance(hr_list, list):
+            hr_list = [hr_list, ]
+        for hr in hr_list:
+            pos_lpips = self.lpips(sr, hr).mean()
+        pos_lpips /= len(hr_list)
+
+        neg_lpips = 0
+        for lr in lr_list:
+            lr = lr.cuda() 
+            if h_ != h or w_ != w:
+                lr = F.interpolate(lr, (h, w), mode='bicubic', align_corners=True).clamp(0, 1)
+            neg_lpips += self.lpips(sr, lr).mean()
+        neg_lpips = neg_lpips / len(lr_list) + 3-7
+        loss = pos_lpips / neg_lpips
+        return loss
+
+
+class MultiContrastiveLoss(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        self.multi_neg = args.multi_neg
+        self.lpips = LPIPS(net='vgg', spatial=args.lpips_spatial, weight=args.layer_weight)
+        self.neg = args.mcl_neg
+        self.cl_loss_type = args.cl_loss_type
+
+    def forward(self, sr, hr_list, lr_list):
+        if not isinstance(lr_list, list):
+            lr_list = [lr_list, ]
+        if not isinstance(hr_list, list):
+            hr_list = [hr_list]
+        with torch.no_grad():
+            pos_loss = self.cl_pos(sr, hr_list)
+            neg_loss = self.cl_neg(sr, lr_list)
+        loss = self.cl_loss(pos_loss, neg_loss)
+
+        return loss
+
+    def cl_pos(self, sr, hr_list):
+        pos_loss = 0
+        for hr in hr_list:
+            pos_lpips = self.lpips(sr, hr).mean()
+            pos_loss += pos_lpips
+        pos_loss /= len(hr_list)
+        return pos_loss
+
+    def cl_neg(self, sr, lr_list):
+        b, c, h, w = sr.shape
+        batch_list = list(range(b))
+        neg_lpips = 0
+        for lr in lr_list:
+            b_, c_, h_, w_ = lr.shape
+            if h_ != h or w_ != w:
+                lr = F.interpolate(lr, (h, w), mode='bicubic',  align_corners=True).clamp(0, 1)
+
+            neg_lpips += self.lpips(sr, lr).mean()
+
+            for neg_times in range(self.neg):
+                random.shuffle(batch_list)
+                neg_lpips_shuffle = self.lpips(sr, lr[batch_list, :, :, :]).mean()
+                neg_lpips += neg_lpips_shuffle
+        neg_lpips /= ((self.neg+1)*len(lr_list))
+        return neg_lpips
+
+    def cl_loss(self, pos_loss, neg_loss):
+
+        if self.cl_loss_type in ['l2', 'cosine']:
+            cl_loss = pos_loss - neg_loss
+
+        elif self.cl_loss_type == 'l1':
+            cl_loss = pos_loss / (neg_loss + 3e-7)
+        else:
+            raise TypeError(f'{self.args.cl_loss_type} not fount in cl_loss')
+
+        return cl_loss
+
+
+class LPIPSContrastiveLoss(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        self.multi_neg = args.multi_neg
+        self.lpips = LPIPS(net='vgg', spatial=args.lpips_spatial, weight=args.layer_weight)
+
+    def forward(self, sr, hr, lr):
+        b, c, h, w = sr.shape
+        b_, c_, h_, w_ = lr.shape
+        if h_ != h or w_ != w:
+            lr = F.interpolate(lr, (h, w), mode='bicubic',  align_corners=True).clamp(0, 1)
+
+        pos_lpips = self.lpips(sr, hr).mean()
+        neg_lpips = self.lpips(sr, lr).mean()
+        loss = pos_lpips - 0.1*neg_lpips
+        return loss
+
+
+class LPIPSLoss(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        # self.multi_neg = args.multi_neg
+        self.lpips = LPIPS(net='vgg', spatial=args.lpips_spatial, weight=args.layer_weight)
+
+    def forward(self, sr, hr,):
+        pos_lpips = self.lpips(sr, hr).mean()
+        return pos_lpips
+
 
 class Vgg19(torch.nn.Module):
     def __init__(self, requires_grad=False):
@@ -73,7 +209,7 @@ class VGGInfoNCE(nn.Module):
             for s_lr in lr:
                 b_, c_, h_, w_ = s_lr.shape
                 if h_ != h or w_ != w:
-                    s_lr = F.interpolate(s_lr, size=(h, w), align_corners=True, mode='bicubic').clamp(0, 1)
+                    s_lr = F.interpolate(s_lr, size=(h, w), align_corners=True, mode='bicubic').clamp(0, self.args.rgb_range)
                 n_lr_features.append(self.infer(s_lr))
 
         infoNCE_loss = 0
