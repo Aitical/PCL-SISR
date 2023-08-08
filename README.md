@@ -2,13 +2,13 @@
 
 # A Practical Contrastive Learning Framework for Single-Image Super-Resolution
 
-<img src="https://img.shields.io/badge/TNNLS-%2300629B.svg?&style=for-the-badge&logo=ieee&logoColor=white" href="https://ieeexplore.ieee.org/abstract/document/10176303"/>
-<img src="https://img.shields.io/badge/2111.13924-%23B31B1B.svg?&style=for-the-badge&logo=arxiv&logoColor=white" href="https://arxiv.org/abs/2111.13924"/>
+<a href="https://ieeexplore.ieee.org/abstract/document/10176303"><img src="https://img.shields.io/badge/TNNLS-%2300629B.svg?&style=for-the-badge&logo=ieee&logoColor=white" /> </a>
+<a href="https://arxiv.org/abs/2111.13924"><img src="https://img.shields.io/badge/2111.13924-%23B31B1B.svg?&style=for-the-badge&logo=arxiv&logoColor=white" /> </a>
 <a href="https://hits.sh/github.com/Aitical/PCL-SISR/"><img alt="Hits" src="https://hits.sh/github.com/Aitical/PCL-SISR.svg?style=for-the-badge"/></a>
 
 <font size=1>自媒体主动宣传:</font>
-<img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" href="https://zhuanlan.zhihu.com/p/445261986" />
-<img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white" href="https://blog.csdn.net/weixin_43904899/article/details/121843427" /> 
+<a href="https://zhuanlan.zhihu.com/p/445261986" ><img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" /> </a>
+<a href="https://blog.csdn.net/weixin_43904899/article/details/121843427"><img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white"  /> </a>
 
 
 
@@ -28,7 +28,7 @@
 ```
 
 ## Overview
-Contrastive learning has achieved remarkable success on various high-level tasks, but there are fewer contrastive learning-based methods proposed for low-level tasks. It is challenging to adopt vanilla contrastive learning technologies proposed for high-level visual tasks to low-level image restoration problems straightly. Because the acquired high-level global visual representations are insufficient for low-level tasks requiring rich texture and context information. In this paper, we investigate the contrastive learning-based single image super-resolution from two perspectives: positive and negative sample construction and feature embedding. The existing methods take naive sample construction approaches (e.g., considering the low-quality input as a negative sample and the ground truth as a positive sample) and adopt a prior model (e.g., pre-trained VGG model) to obtain the feature embedding. To this end, we propose a practical contrastive learning framework for SISR, named PCL-SR. We involve the generation of many informative positive and hard negative samples in frequency space. Instead of utilizing an additional pre-trained network, we design a simple but effective embedding network inherited from the discriminator network which is more task-friendly. Compared with existing benchmark methods, we re-train them by our proposed PCL-SR framework and achieve superior performance. Extensive experiments have been conducted to show the effectiveness and technical contributions of our proposed PCL-SR thorough ablation studies.
+> Contrastive learning has achieved remarkable success on various high-level tasks, but there are fewer contrastive learning-based methods proposed for low-level tasks. It is challenging to adopt vanilla contrastive learning technologies proposed for high-level visual tasks to low-level image restoration problems straightly. Because the acquired high-level global visual representations are insufficient for low-level tasks requiring rich texture and context information. In this paper, we investigate the contrastive learning-based single image super-resolution from two perspectives: positive and negative sample construction and feature embedding. The existing methods take naive sample construction approaches (e.g., considering the low-quality input as a negative sample and the ground truth as a positive sample) and adopt a prior model (e.g., pre-trained VGG model) to obtain the feature embedding. To this end, we propose a practical contrastive learning framework for SISR, named PCL-SR. We involve the generation of many informative positive and hard negative samples in frequency space. Instead of utilizing an additional pre-trained network, we design a simple but effective embedding network inherited from the discriminator network which is more task-friendly. Compared with existing benchmark methods, we re-train them by our proposed PCL-SR framework and achieve superior performance. Extensive experiments have been conducted to show the effectiveness and technical contributions of our proposed PCL-SR thorough ablation studies.
 <div style="text-align: center">
 <img style="max-width:100%;overflow:hidden;" src="pic/framework_final.png" alt="">
 </div>
