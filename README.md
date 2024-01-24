@@ -14,6 +14,10 @@
 
 </div>
 
+## News
+
+🔥 You may be interested in our new work [**Learning from History: Task-agnostic Model Contrastive Learning for Image Restoration**](https://arxiv.org/abs/2309.06023), accepted by AAAI'24
+
 ## Cication
 ```
 @ARTICLE{10176303,
