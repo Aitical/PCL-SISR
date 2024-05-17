@@ -6,18 +6,13 @@
 <a href="https://arxiv.org/abs/2111.13924"><img src="https://img.shields.io/badge/2111.13924-%23B31B1B.svg?&style=for-the-badge&logo=arxiv&logoColor=white" /> </a>
 <a href="https://hits.sh/github.com/Aitical/PCL-SISR/"><img alt="Hits" src="https://hits.sh/github.com/Aitical/PCL-SISR.svg?style=for-the-badge"/></a>
 
-<font size=1>自媒体主动宣传:</font>
-<a href="https://zhuanlan.zhihu.com/p/445261986" ><img src="https://img.shields.io/badge/zhihu-%230084FF.svg?&style=for-the-badge&logo=zhihu&logoColor=white" /> </a>
-<a href="https://blog.csdn.net/weixin_43904899/article/details/121843427"><img src="https://img.shields.io/badge/CSDN-%23ED1C24.svg?&style=for-the-badge&logo=dependabot&logoColor=white"  /> </a>
-
-
-
 </div>
 
 ## News
 
-🔥 You may be interested in our new work [**Learning from History: Task-agnostic Model Contrastive Learning for Image Restoration**](https://arxiv.org/abs/2309.06023), accepted by AAAI'24
-
+🔥 You may be interested in our new work 
+1. [**Learning from History: Task-agnostic Model Contrastive Learning for Image Restoration**](https://arxiv.org/abs/2309.06023), accepted by AAAI 24
+2. [**Exploiting Self-Supervised Constraints in Image Super-Resolution**](https://arxiv.org/abs/2404.00260v1), to be appeared in ICME 24 Oral.
 ## Cication
 ```
 @ARTICLE{10176303,
